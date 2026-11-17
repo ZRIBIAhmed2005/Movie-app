@@ -23,7 +23,7 @@ jobs:
           node-version: 22
 
       - run: npm ci
-      - run: npx ng build --configuration production --base-href "/movie-app/"
+      - run: npx ng build --configuration production --base-href "/Movie-app/"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/movie-app/browser
