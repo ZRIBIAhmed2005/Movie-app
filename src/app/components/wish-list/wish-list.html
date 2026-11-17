@@ -1,0 +1,22 @@
+<main class="wishlist-page">
+    <div class="wishlist-heading">
+        <h1>Ma wishlist</h1>
+        <a routerLink="/">Retour aux films</a>
+    </div>
+
+    @if (movieService.wishList().length === 0) {
+        <p class="empty">Votre wishlist est vide.</p>
+    } @else {
+        <div class="wishlist-grid">
+            @for (movie of movieService.wishList(); track movie.id) {
+                <article class="wishlist-card">
+                    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title">
+                    <div>
+                        <h2>{{ movie.title }}</h2>
+                        <button type="button" (click)="movieService.toggleWishList(movie)">Retirer</button>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</main>

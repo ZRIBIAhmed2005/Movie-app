@@ -1,0 +1,21 @@
+<div class="container">
+
+    @for (movie of movieService.movieList(); track movie.id) {
+        <div class="movie-card" (click)="navigateTo(movie)" tabindex="0" (keydown.enter)="navigateTo(movie)">
+            <div>
+            <img [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path" [alt]="movie.title" />
+            </div>
+            <div class="movie-info">
+                <h2>{{ movie.title }}</h2>
+                <button
+                    type="button"
+                    class="wishlist-button"
+                    (click)="movieService.toggleWishList(movie); $event.stopPropagation()"
+                    [attr.aria-label]="movieService.isInWishList(movie.id) ? 'Retirer de la wishlist' : 'Ajouter à la wishlist'"
+                >
+                    {{ movieService.isInWishList(movie.id) ? '♥' : '♡' }}
+                </button>
+            </div>
+        </div>
+    }
+</div>
